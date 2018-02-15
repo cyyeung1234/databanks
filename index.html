@@ -1,0 +1,49 @@
+<html>
+
+<head>
+</head>
+
+<body>
+	<center>
+	<h1>MaterialCenter Databanks Web Server</h1>
+	
+	<p id="demo">Server Status: 
+	<input type="button" id="checkhost" value="Test">
+	</p>
+	
+	<p>Server Link: <a href="http://subwcl604:8989/MaterialCenter/facelets/main/application.xhtml">Click Here</a></p>
+	</center>
+
+	<script type="text/javascript">
+	function isSiteOnline(url,callback) {
+		// try to load favicon
+		var timer = setTimeout(function(){
+			// timeout after 5 seconds
+			callback(false);
+		},5000)
+
+		var img = document.createElement("img");
+		img.onload = function() {
+			clearTimeout(timer);
+			callback(true);
+		}
+
+		img.onerror = function() {
+			clearTimeout(timer);
+			callback(false);
+		}
+
+		img.src = url+"/favicon.ico";
+	}
+
+	document.getElementById('checkhost').onclick = function() {
+		isSiteOnline("http://subwcl604:8989/MaterialCenter/facelets/main/application.xhtml",function(result){
+			var msg = result ? "Site is online" : "Site is offline";
+			alert(msg);
+		})
+	}
+
+	</script>
+	
+</body>
+</html>
